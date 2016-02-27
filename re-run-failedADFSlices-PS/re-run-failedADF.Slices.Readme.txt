@@ -1,0 +1,19 @@
+Recently I came across  a scenario where I need to detect failed slices of all Datasets in Azure Data Factory, in my case I need to detect for last 3 months and the number of slices was around 600+, they failed due to validation error as the source data wasn’t present and after a number of re-try slices were marked as failed. 
+
+In such cases its difficult to perform re-run from the  Portal as you need to right click on each slice and run it explicitly. 
+
+Solution: I wrote a following PowerShell Script, this script will detect all failed slices in a given Azure Data Factory and re-run same with your consent.
+
+You can use same script not only for failed slices but for any status, you just need to change the Dataset status in filtering of slices, shown in following script.
+
+I am also planning to write a solution which will run as a service in a worker role and automatically detect failed slices in a given time and re-run same.
+
+Question can be asked, that in ADF you already have re-run logic they why you need to go through the hassles of writing and running script.
+
+Yes we do have but after x number of re-runs a slices is marked as failed and only way is to run is through portal or programmatically. 
+
+So, here is my contribution to ADF Community.
+
+Pre-requisite – Azure Resource Manager PowerShell (https://azure.microsoft.com/en-us/blog/azps-1-0-pre/)
+
+
